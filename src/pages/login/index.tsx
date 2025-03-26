@@ -3,17 +3,26 @@ import { View, Text, Image, TextInput, TouchableOpacity, Alert, ActivityIndicato
 import { MaterialIcons } from '@expo/vector-icons';
 import { style } from "./style";
 import Logo from '../../assets/logo.png';
+
 import { themas } from "../../global/themes";
 import { createTable, getUser, insertUser } from "../../database/database";
 
-export default function Login() {
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../../types'; 
+
+type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
+
+interface LoginProps {
+    navigation: LoginScreenNavigationProp;
+}
+
+export default function Login({ navigation }: LoginProps) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         createTable();
-        insertUser('teste@teste.com', '1234').then(() => console.log('Usuário inserido!'));
     }, []);
 
     async function getLogin() {
@@ -65,6 +74,11 @@ export default function Login() {
             <View style={style.boxBottom}>
                 <TouchableOpacity style={style.button} onPress={getLogin}>
                     {loading ? <ActivityIndicator /> : <Text style={style.textButton}>Entrar</Text>}
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+                    <Text style={{ color: themas.Colors.primary, marginTop: 10 }}>
+                        Criar uma conta
+                    </Text>
                 </TouchableOpacity>
             </View>
         </View>
