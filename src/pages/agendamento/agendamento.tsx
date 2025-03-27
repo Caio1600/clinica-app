@@ -18,9 +18,11 @@ export default function ScheduleAppointment({ navigation }: any) {
         }
 
         try {
-            // Aqui você pode adicionar a lógica para salvar o agendamento no banco de dados
             Alert.alert('Sucesso', 'Consulta agendada com sucesso!');
-            navigation.navigate('Home'); 
+            setPatientName('')
+            setDate('')
+            setTime('')
+            setDescription('')
         } catch (error) {
             Alert.alert('Erro', 'Não foi possível agendar a consulta.');
         }

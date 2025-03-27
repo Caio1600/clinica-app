@@ -39,6 +39,7 @@ export default function Login({ navigation }: LoginProps) {
     
         if (exists) {
             Alert.alert('Acesso autorizado', 'Bem-vindo ' + email);
+            navigation.navigate('Agendamento'); 
         } else {
             Alert.alert('Não Autorizado', 'Email ou senha incorretos');
         }
