@@ -77,6 +77,11 @@ export default function Register({ navigation }: any) {
                 <TouchableOpacity style={style.button} onPress={handleRegister}>
                     <Text style={style.textButton}>Cadastrar</Text>
                 </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+                    <Text style={{ color: themas.Colors.primary, marginTop: 10 }}>
+                        Criar uma conta
+                    </Text>
+                </TouchableOpacity>
             </View>
         </View>
     );
